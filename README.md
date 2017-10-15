@@ -170,12 +170,12 @@ Consider algorithm efficiency, I was wondering my algoritm in slope detection lo
 
 ### Future improvements
 
-A better and quicker algorithm to maintain the most lane slope information and also has a very fast calculation speed.
-Since CV2 has a bunch of color detection function, it's important to develop a more rugged algoritm with other color space.
-Try fitting curve lane and more parameter calculation.(Like centerline, lateral velocity)
+* A better and quicker algorithm to maintain the most lane slope information and also has a very fast calculation speed.
+* Since CV2 has a bunch of color detection function, it's important to develop a more rugged algoritm with other color space.
+* Try fitting curve lane and more parameter calculation.(Like centerline, lateral velocity)
 
 ## Reference
 
 1. A full explanation of the HSL color usage, it's very clear to understanding. [naokishibuya's git](https://github.com/naokishibuya/car-finding-lane-lines)
-2. Deep understanding Hough transform coding in different languages . [naokishibuya's git](https://rosettacode.org/wiki/Hough_transform)
-3.
+2. Deep understanding Hough transform coding in different languages . [rosettacode](https://rosettacode.org/wiki/Hough_transform)
+3. The most view lane detection video on YouTube. [ChanHee Jean's channel](https://www.youtube.com/watch?v=VlH3OEhZnow)
