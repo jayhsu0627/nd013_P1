@@ -164,7 +164,7 @@ def process_image(frame):
 ### Shortcomings
 
 
-As a film, the detected lane looks jitter minor frequently, this is due to the fast changing slope rate in each frame. Some people may apply weighting factors on current frame and previous frame to average such phenomenon. However， I don't know which way is helps to aiming a better PID control in future course. So I keep this result, let's see what we can do in future research.
+As a film, the detected lane looks jitter minor frequently, this is due to the fast changing slope rate in each frame. Some people may apply weighting factors on current frame and previous frame to average such phenomenon. However, I don't know which way is helps to aiming a better PID control in future course. So I keep this result, let's see what we can do in future research.
 Consider algorithm efficiency, I was wondering my algorithm in slope detection loop may cause longer real time processing time, which may leads to slow reaction when high speed driving. This need to be investigated  then make any decision.
 
 
