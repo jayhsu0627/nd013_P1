@@ -134,7 +134,7 @@ def process_image(frame):
 - **Step 5** **`region_of_interest(edges, vertices)`** Produce region of interest mask for keep interest focus on ahead of the car.
 >Create mask by defined vertices. Since all main code was provide by Udacity, the only thing I want to mention is I create a varable called `y_margin` to control the position of region's upper limit vertically. It's easy to define how much area you want to cover, 50% or 80%? just type in 0.5 or 0.8. In our case, I applied it into 0.60.
 
-- **Step 6** **`hough_lines_avg(masked_edges, rho, theta, threshold, min_line_len, max_line_gap,y_margin)`** Detect and return lines by **[Hough transform](https://en.wikipedia.org/wiki/Hough_transform) ** under user defined parameters.
+- **Step 6** **`hough_lines_avg(masked_edges, rho, theta, threshold, min_line_len, max_line_gap,y_margin)`** Detect and return lines by **[Hough transform](https://en.wikipedia.org/wiki/Hough_transform)** under user defined parameters.
 >The philosophy of this step is to keep detected line has a longer length and combine them all into a longer line as much as possible.The parameters I used is listed as below: 
   - rho = 2 pixels   
   - theta = 2 radian 
@@ -142,7 +142,7 @@ def process_image(frame):
   - min_line_len = 15 pixels
   - max_line_gap = 40 pixels
 
-  >For the purpos of left/right lande detection, a sub-function `hough_lines_avg` is defined, which means the lane would recognized and colored as left and right under different slope rate. Within it, another sub-function `draw_lines_avg` is created. The interesting thing here is, I create array sets for left right as [0] and [1], in this way we could apply loop to filter out small line and severely slope-rate changed lines. And also, a linear regression fitting function is called, the purpose is find out the intersection point by slope line and edge of interest region. I think my algorithm is an unique method compare to just simply defined the intersection point by `y=a*x+b` formular. Also it may help when solving a more realistic curve lane is detected in future. See **Insight** section for more information. 
+  >For the purpos of left/right lande detection, a sub-function `hough_lines_avg` is defined, which means the lane would recognized and colored as left and right under different slope rate. Within it, another sub-function `draw_lines_avg` is created. The interesting thing here is, I create array sets for left right as [0] and [1], in this way we could apply loop to filter out small line and severely slope-rate changed lines. It keeps focus on lane but not other edges, like hood edges in the sight view. And also, a linear regression fitting function is called, the purpose is find out the intersection point by slope line and edge of interest region. I think my algorithm is an unique method compare to just simply defined the intersection point by `y=a*x+b` formular. In further, it may help when solving a more realistic curve lane is detected in future. See **Insight** section for more information. 
 
 - **Step 7** **`weighted_img(lines, frame, α=1., β=1., λ=0.)`** Combine raw frame and detected lane image.
 >Simply add two image togther with different weighting factors. In our case, I put both image as same factor at 1. A sub-function `weighted_img` is defined. Within it, `cv2.addWeighted` is called.
@@ -164,19 +164,18 @@ def process_image(frame):
 ### Shortcomings
 
 
-Alright, the result would shows up 
-
-Another shortcoming could be ...
+As a film, the detected lane looks jitter minor frequently, this is due to the fast changing slope rate in each frame. Some people may apply weighting factors on current frame and previous frame to average such phenomenon. However， I don't know which way is helps to aiming a better PID control in future course. So I keep this result, let's see what we can do in future research.
+Consider algorithm efficiency, I was wondering my algoritm in slope detection loop may casue longer real time processing time, which may leads to slow reaction when high speed driving. This need to be investigated  then make any decision.
 
 
 ### Future improvements
 
-A possible improvement would be to ...
-
-* package function into class
+A better and quicker algorithm to maintain the most lane slope information and also has a very fast calculation speed.
+Since CV2 has a bunch of color detection function, it's important to develop a more rugged algoritm with other color space.
+Try fitting curve lane and more parameter calculation.(Like centerline, lateral velocity)
 
 ## Reference
 
 1. A full explanation of the HSL color usage, it's very clear to understanding. [naokishibuya's git](https://github.com/naokishibuya/car-finding-lane-lines)
-2. 
+2. Deep understanding Hough transform coding in different languages . [naokishibuya's git](https://rosettacode.org/wiki/Hough_transform)
 3.
