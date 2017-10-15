@@ -34,14 +34,14 @@ Two types of code is implemented.
 Since the technology used in the class, like **Canny Edge/Region of Interest/Hough Transform Line Detection**, is mainly taught by Udacity team and contribute by OpenCV, so I cannot declare most of those function is my original insight. The exlucive algorithm I made is:
 * The goal to find out left and right lane encourage me to find out a `draw_lines_avg` function. Which inlclude:
     * Detect the lane by slope of the line, also the exist region of point x1. see `line 101` in `In [14]`.
-
+    * Filter out error-leads line objects by restrict the length into 50, see `line 109` and `line 111` in `In [14]`. Avoiding jitter in movie.
+    * Use `stats.linregress` function in `scipy` library to calculate slope more fast and efficiency.  
     <img src="./test_videos_output/Before_Region_Split.jpg" width="600" >
     <p style="text-align: center;">Before Region Split, the point locate at left and right may leads to a massive slope-changed lane.</p>
 
     <img src="./test_videos_output/Region_Split.jpg" width="600" >
     <p style="text-align: center;">After Region Split.</p>
-    * Filter out error-leads line objects by restrict the length into 50, see `line 109` and `line 111` in `In [14]`. Avoiding jitter in movie.
-    * Use `stats.linregress` function in `scipy` library to calculate slope more fast and efficiency.  
+
     * Produce enough data set (like particles in [Particle Filter](https://en.wikipedia.org/wiki/Particle_filter)) under the linear regression line, helped to find out the extended dots inside the mask region.
     <img src="./test_videos_output/extend_step1.jpg" width="600" >
     <p style="text-align: center;">Fast-find the dots on edge.</p>
