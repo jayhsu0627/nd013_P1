@@ -35,22 +35,22 @@ Since the technology used in the class, like **Canny Edge/Region of Interest/Hou
 * The goal to find out left and right lane encourage me to find out a `draw_lines_avg` function. Which inlclude:
     * Detect the lane by slope of the line, also the exist region of point x1. see `line 101` in `In [14]`.
 
-	<img src="./test_videos_output/Before_Region_Split.jpg" width="600" >
-	<p style="text-align: center;">Before Region Split, the point locate at left and right may leads to a massive slope-changed lane.</p>
+    <img src="./test_videos_output/Before_Region_Split.jpg" width="600" >
+    <p style="text-align: center;">Before Region Split, the point locate at left and right may leads to a massive slope-changed lane.</p>
 
-	<img src="./test_videos_output/Region_Split.jpg" width="600" >
-	<p style="text-align: center;">After Region Split.</p>
-	* Filter out error-leads line objects by restrict the length into 50, see `line 109` and `line 111` in `In [14]`. Avoiding jitter in movie.
+    <img src="./test_videos_output/Region_Split.jpg" width="600" >
+    <p style="text-align: center;">After Region Split.</p>
+    * Filter out error-leads line objects by restrict the length into 50, see `line 109` and `line 111` in `In [14]`. Avoiding jitter in movie.
     * Use `stats.linregress` function in `scipy` library to calculate slope more fast and efficiency.  
     * Produce enough data set (like particles in [Particle Filter](https://en.wikipedia.org/wiki/Particle_filter)) under the linear regression line, helped to find out the extended dots inside the mask region.
-	<img src="./test_videos_output/extend_step1.jpg" width="600" >
-	<p style="text-align: center;">Fast-find the dots on edge.</p>
-	
+    <img src="./test_videos_output/extend_step1.jpg" width="600" >
+    <p style="text-align: center;">Fast-find the dots on edge.</p>
+    
     <img src="./test_videos_output/extend_step2.jpg" width="600" >
-	<p style="text-align: center;">Creating fitting data on line.</p>
+    <p style="text-align: center;">Creating fitting data on line.</p>
 
-	<img src="./test_videos_output/extend_step3.jpg" width="600" >
-	<p style="text-align: center;">Edge dots is the mixture of max or min of fitting data.</p>
+    <img src="./test_videos_output/extend_step3.jpg" width="600" >
+    <p style="text-align: center;">Edge dots is the mixture of max or min of fitting data.</p>
 
 * In the challenge program, `hsl` is used to filter out the white and yellow color for the purpose of better lane detection.
 
@@ -110,12 +110,12 @@ def process_image(frame):
     # Draw the lines on the edge image
     lines_edges = weighted_img(lines, frame, α=1., β=1., λ=0.)
     return lines_edges
-   ####################################################################################
 
 # Read in and grayscale the image
     img = frame
     result = color(img)  
     return result
+    
 ```
 
 ---
